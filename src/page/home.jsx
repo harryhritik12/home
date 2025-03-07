@@ -85,7 +85,7 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 1.2 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
-                className="relative w-full h-[500px] md:h-[700px] overflow-hidden flex items-center justify-center"
+                className="relative w-full h-[500px] md:h-[700px] flex items-center justify-center"
             >
                 <motion.img
                     src={bannerImage}
