@@ -7,38 +7,41 @@ import team2 from "../assets/team/team2.jpg";
 import team3 from "../assets/team/team3.jpg";
 import team4 from "../assets/team/team4.jpg";
 import aboutImage from "../assets/process1.jpg";
+import bannerImage from "../assets/Banner.jpg";
 import { TypeAnimation } from 'react-type-animation';
+
 
 const Home = () => {
     const services = [
         {
+            title: "Indoor Services",
+            img: process,
+            description: [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."
+            ]
+        },
+        {
+            title: "Outdoor Services",
+            img: process,
+            description: [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."
+            ]
+        },
+        {
             title: "Development Services",
             img: process,
             description: [
-                "We offer top-notch development services to build scalable and efficient applications.",
-                "Our team specializes in modern technologies to deliver robust solutions.",
-                "Partner with us for innovative and reliable software development."
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."
             ]
-        },
-        {
-            title: "Financial Services",
-            img: process,
-            description: [
-                "Our financial services ensure your business stays financially healthy and compliant.",
-                "We provide expert financial advice tailored to your business needs.",
-                "Trust us to manage your finances with precision and care."
-            ]
-        },
-        {
-            title: "Construction Services",
-            img: process,
-            description: [
-                "We provide reliable construction services for residential and commercial projects.",
-                "Our team ensures quality and safety in every construction endeavor.",
-                "Build your dreams with our professional construction solutions."
-            ]
-        },
+        }
     ];
+    
 
     const teamMembers = [
         { name: "Robert", role: "Principal Designer", img: team1 },
@@ -63,6 +66,41 @@ const Home = () => {
 
     return (
         <div className="bg-white text-gray-900 min-h-screen font-sans">
+             {/* Banner Section */}
+             <motion.div
+                initial={{ opacity: 0, scale: 1.2 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="relative w-full h-[500px] md:h-[700px] overflow-hidden flex items-center justify-center"
+            >
+                <motion.img 
+                    src={bannerImage} 
+                    alt="Global Network" 
+                    className="w-full h-full object-cover brightness-50"
+                    initial={{ scale: 1.3 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 4, ease: "easeOut" }}
+                />
+                <div className="absolute text-center text-white px-6">
+                    <motion.h1 
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="text-5xl md:text-7xl font-extrabold drop-shadow-lg"
+                    >
+                        Connecting the World
+                    </motion.h1>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                        className="text-lg md:text-2xl mt-4 drop-shadow-md"
+                    >
+                        Innovating Global Networks with Cutting-Edge Solutions
+                    </motion.p>
+                </div>
+            </motion.div>
+
             {/* About Section */}
             <section className="max-w-7xl mx-auto py-20 px-6 md:px-16">
                 <div className="flex flex-col md:flex-row items-center">
