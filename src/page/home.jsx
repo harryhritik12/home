@@ -79,7 +79,7 @@ const Home = () => {
         ];
 
     return (
-        <div className="bg-white text-gray-900 min-h-screen font-sans">
+        <div className="bg-white text-gray-900 min-h-screen font-sans overflow-hidden">
             {/* Banner Section */}
             <motion.div
                 initial={{ opacity: 0, scale: 1.2 }}
