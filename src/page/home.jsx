@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import process from "../assets/process1.jpg";
@@ -8,10 +8,21 @@ import team3 from "../assets/team/team3.jpg";
 import team4 from "../assets/team/team4.jpg";
 import aboutImage from "../assets/process1.jpg";
 import bannerImage from "../assets/Banner.jpg";
-import { TypeAnimation } from 'react-type-animation';
-
+import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
+    const [isMobile, setIsMobile] = useState(false);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const services = [
         {
             title: "Indoor Services",
@@ -19,8 +30,8 @@ const Home = () => {
             description: [
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."
-            ]
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+            ],
         },
         {
             title: "Outdoor Services",
@@ -28,8 +39,8 @@ const Home = () => {
             description: [
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."
-            ]
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+            ],
         },
         {
             title: "Development Services",
@@ -37,11 +48,10 @@ const Home = () => {
             description: [
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."
-            ]
-        }
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+            ],
+        },
     ];
-    
 
     const teamMembers = [
         { name: "Robert", role: "Principal Designer", img: team1 },
@@ -51,38 +61,42 @@ const Home = () => {
     ];
 
     // Unique animations for each service image on page load
-    const initialAnimations = [
-        { opacity: 0, x: -100, rotate: -10 }, // Slide in from left with rotation
-        { opacity: 0, y: 100, scale: 0.8 }, // Slide in from bottom with scaling
-        { opacity: 0, x: 100, rotate: 10 }, // Slide in from right with rotation
-    ];
+    const initialAnimations = isMobile || prefersReducedMotion
+        ? [{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }]
+        : [
+            { opacity: 0, x: -100, rotate: -10 },
+            { opacity: 0, y: 100, scale: 0.8 },
+            { opacity: 0, x: 100, rotate: 10 },
+        ];
 
     // Unique animations for each service image on hover
-    const hoverAnimations = [
-        { scale: 1.1, rotate: 5, transition: { type: "spring", stiffness: 300 } }, // Scale and rotate
-        { scale: 1.05, y: -10, transition: { type: "spring", stiffness: 300 } }, // Scale and move up
-        { scale: 1.1, rotate: -5, transition: { type: "spring", stiffness: 300 } }, // Scale and rotate
-    ];
+    const hoverAnimations = isMobile || prefersReducedMotion
+        ? {}
+        : [
+            { scale: 1.05, rotate: 5, transition: { type: "spring", stiffness: 300 } },
+            { scale: 1.05, y: -10, transition: { type: "spring", stiffness: 300 } },
+            { scale: 1.05, rotate: -5, transition: { type: "spring", stiffness: 300 } },
+        ];
 
     return (
         <div className="bg-white text-gray-900 min-h-screen font-sans">
-             {/* Banner Section */}
-             <motion.div
+            {/* Banner Section */}
+            <motion.div
                 initial={{ opacity: 0, scale: 1.2 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="relative w-full h-[500px] md:h-[700px] overflow-hidden flex items-center justify-center"
             >
-                <motion.img 
-                    src={bannerImage} 
-                    alt="Global Network" 
+                <motion.img
+                    src={bannerImage}
+                    alt="Global Network"
                     className="w-full h-full object-cover brightness-50"
                     initial={{ scale: 1.3 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 4, ease: "easeOut" }}
                 />
                 <div className="absolute text-center text-white px-6">
-                    <motion.h1 
+                    <motion.h1
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.3 }}
@@ -90,7 +104,7 @@ const Home = () => {
                     >
                         Connecting the World
                     </motion.h1>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.6 }}
@@ -136,7 +150,7 @@ const Home = () => {
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7 }}
-                            className={`flex flex-col md:flex-row items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+                            className={`flex flex-col md:flex-row items-center ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
                         >
                             <motion.div
                                 className="md:w-1/2"
@@ -190,73 +204,73 @@ const Home = () => {
 
             {/* Contact Section */}
             <section id="contact" className="max-w-7xl mx-auto py-20 px-6 md:px-16">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7 }}
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg p-10 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all"
-            >
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
-                    className="text-4xl font-bold text-center mb-6"
-                >
-                    Get in Touch
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.4 }}
-                    className="text-lg text-center mb-6"
-                >
-                    Have questions or need help? Reach out to us!
-                </motion.p>
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.6 }}
-                    className="flex flex-col md:flex-row items-center justify-between"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.7 }}
+                    className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg p-10 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all"
                 >
-                    <div className="text-center md:text-left">
-                        <p className="text-lg mb-2">
-                            <strong>Email:</strong>
-                            <a href="mailto:support@businessbasket.in" className="underline hover:text-blue-500 transition duration-300">
-                                support@businessbasket.in
-                            </a>
-                        </p>
-                        <p className="text-lg">
-                            <strong>Phone:</strong>
-                            <a href="tel:+917503677953" className="underline hover:text-blue-500 transition duration-300">
-                                +91 7503677953
-                            </a>
-                        </p>
-                    </div>
-                    <div className="flex space-x-6 mt-4 md:mt-0">
-                        <motion.a
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            href="https://facebook.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-900 hover:text-blue-500 text-2xl transition duration-300"
-                        >
-                            <FaFacebookF />
-                        </motion.a>
-                        <motion.a
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            href="https://twitter.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-900 hover:text-blue-500 text-2xl transition duration-300"
-                        >
-                            <FaTwitter />
-                        </motion.a>
-                    </div>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                        className="text-4xl font-bold text-center mb-6"
+                    >
+                        Get in Touch
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.4 }}
+                        className="text-lg text-center mb-6"
+                    >
+                        Have questions or need help? Reach out to us!
+                    </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.6 }}
+                        className="flex flex-col md:flex-row items-center justify-between"
+                    >
+                        <div className="text-center md:text-left">
+                            <p className="text-lg mb-2">
+                                <strong>Email:</strong>
+                                <a href="mailto:support@businessbasket.in" className="underline hover:text-blue-500 transition duration-300">
+                                    support@businessbasket.in
+                                </a>
+                            </p>
+                            <p className="text-lg">
+                                <strong>Phone:</strong>
+                                <a href="tel:+917503677953" className="underline hover:text-blue-500 transition duration-300">
+                                    +91 7503677953
+                                </a>
+                            </p>
+                        </div>
+                        <div className="flex space-x-6 mt-4 md:mt-0">
+                            <motion.a
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                href="https://facebook.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-900 hover:text-blue-500 text-2xl transition duration-300"
+                            >
+                                <FaFacebookF />
+                            </motion.a>
+                            <motion.a
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                href="https://twitter.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-900 hover:text-blue-500 text-2xl transition duration-300"
+                            >
+                                <FaTwitter />
+                            </motion.a>
+                        </div>
+                    </motion.div>
                 </motion.div>
-            </motion.div>
-        </section>
+            </section>
         </div>
     );
 };
