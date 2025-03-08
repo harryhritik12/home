@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
-import process from "../assets/process1.jpg";
 import team1 from "../assets/team/team.jpg";
 import team2 from "../assets/team/team2.jpg";
 import team3 from "../assets/team/team3.jpg";
@@ -10,9 +9,63 @@ import aboutImage from "../assets/process1.jpg";
 import bannerImage from "../assets/Banner.jpg";
 import { TypeAnimation } from "react-type-animation";
 
+const outdoorImages = [
+    require("../assets/outDoorServices/LandSurvey.jpg"),
+    require("../assets/outDoorServices/Road&Highwaysurvey.jpg"),
+    require("../assets/outDoorServices/TopographicSurvey.jpg"),
+    require("../assets/outDoorServices/Utility.jpg"),
+    require("../assets/outDoorServices/WaterPipelineSurvey.jpg"),
+];
+
+const indoorImages = [
+    require("../assets/IndoorServices/Base-Map-Creation.jpg"),
+    require("../assets/IndoorServices/DataAnalysis.jpg"),
+    require("../assets/IndoorServices/Digitization.jpg"),
+    require("../assets/IndoorServices/Geo-Ref.jpg"),
+    require("../assets/IndoorServices/ImageryServices.jpg"),
+];
+
+const DevelopmentImages = [
+    require("../assets/DevelopmentServices/Gis.jpg"),
+    require("../assets/DevelopmentServices/Mobileapplication.jpg"),
+    require("../assets/DevelopmentServices/WebApplication.jpg"),
+    require("../assets/DevelopmentServices/Website.jpg"),
+];
+
 const Home = () => {
     const [isMobile, setIsMobile] = useState(false);
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const [outdoorImage, setOutdoorImage] = useState(outdoorImages[0]);
+    const [indoorImage, setIndoorImage] = useState(indoorImages[0]);
+    const [DevelopmentImage, setDevelopmentImage] = useState(DevelopmentImages[0]);
+
+    // Change Outdoor Services image every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomImage = outdoorImages[Math.floor(Math.random() * outdoorImages.length)];
+            setOutdoorImage(randomImage);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Change Indoor Services image every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomIndoorImage = indoorImages[Math.floor(Math.random() * indoorImages.length)];
+            setIndoorImage(randomIndoorImage);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Change Development Services image every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomDevelopmentImage = DevelopmentImages[Math.floor(Math.random() * DevelopmentImages.length)];
+            setDevelopmentImage(randomDevelopmentImage);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -23,10 +76,11 @@ const Home = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+
     const services = [
         {
             title: "Indoor Services",
-            img: process,
+            img: indoorImage,
             description: [
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -35,7 +89,7 @@ const Home = () => {
         },
         {
             title: "Outdoor Services",
-            img: process,
+            img: outdoorImage, // Use the randomly selected image
             description: [
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -44,7 +98,7 @@ const Home = () => {
         },
         {
             title: "Development Services",
-            img: process,
+            img: DevelopmentImage,
             description: [
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
