@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import team1 from "../assets/team/team.jpg";
 import team2 from "../assets/team/team2.jpg";
 import team3 from "../assets/team/team3.jpg";
@@ -82,31 +81,40 @@ const Home = () => {
             title: "Indoor Services",
             img: indoorImage,
             description: [
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+                "Processing and enhancement of satellite and aerial imagery",
+                "Digitization and feature extraction from scanned maps and CAD drawings",
+                "Geo-referencing spatial data for accurate alignment with real-world coordinates",
+                "Cadastral mapping for land ownership and boundary identification",
+                "Base map creation with essential geographic elements",
+                "Land base creation for urban planning and infrastructure development",
+                "Land use and land cover mapping for environmental and resource management",
+                "Preparation of land acquisition plans for infrastructure projects",
+                "Data conversion across multiple formats (CAD to GIS, raster to vector, etc.)",
+                "Spatial data analysis for decision-making and trend analysis",
             ],
         },
         {
             title: "Outdoor Services",
-            img: outdoorImage, // Use the randomly selected image
+            img: outdoorImage, 
             description: [
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+                "Accurate Land & Cadastral Surveys for property mapping, legal documentation, and urban planning",
+                "Utility, Gas, and Water Pipeline Surveys ensuring efficient infrastructure development and maintenance",
+                "Advanced Drone, Topographic, and Road & Highway Surveys supporting smart city planning and transportation projects",
+                "Consumer Indexing, Property Tax, and Census Surveys streamlining data collection for government and businesses",
+                "Ground Truthing, POI verification, and Network & Asset Mapping for precise geospatial data management",
             ],
         },
         {
             title: "Development Services",
             img: DevelopmentImage,
             description: [
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
+                "WebGIS solutions for Land Management enabling efficient geospatial data visualization and analysis",
+                "Website Creation services ensuring modern, responsive, and user-friendly digital experiences",
+                "Custom Web Applications tailored to industry-specific needs enhancing workflow automation and productivity",
+                "Mobile Application development delivering scalable, high-performance solutions for seamless user engagement",
             ],
         },
     ];
-
     const teamMembers = [
         { name: "Robert", role: "Principal Designer", img: team1 },
         { name: "Patton", role: "Senior Designer", img: team2 },
@@ -188,52 +196,48 @@ const Home = () => {
                     >
                         <h2 className="text-4xl font-bold mb-6">About Us</h2>
                         <p className="text-lg leading-relaxed text-gray-700 mb-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
+                        BUSINESS BASKET INFRATECH PVT. LTD, formerly Universal Map Solutions, specializes in Remote Sensing (RS), Geographic Information System (GIS), and Global Positioning System (GPS) technologies. We provide expertise in natural resource management, disaster management, risk assessment, land information systems, environmental studies, MIS, and urban planning.
+
+Founded by highly qualified professionals, BUSINESS BASKET offers GIS, remote sensing, GPS, digital mapping, utility mapping, transport planning, consulting, and project management solutions. We serve as a cost-effective outsourcing partner and focus on capacity building through training programs. Our commitment to accuracy, quality data, and timely project delivery ensures long-term success.
+</p>
                     </motion.div>
                 </div>
             </section>
 
             {/* Services Section */}
             <section className="max-w-7xl mx-auto py-20 px-6 md:px-16">
-                <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
-                <div className="space-y-16">
-                    {services.map((service, index) => (
+            <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
+            <div className="space-y-16">
+                {services.map((service, index) => (
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        className={`flex flex-col md:flex-row items-center ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+                    >
                         <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            className="md:w-1/2"
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.7 }}
-                            className={`flex flex-col md:flex-row items-center ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
                         >
-                            <motion.div
-                                className="md:w-1/2"
-                                initial={initialAnimations[index]} // Unique initial animation
-                                whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }} // Reset on view
-                                whileHover={hoverAnimations[index]} // Unique hover animation
-                                transition={{ duration: 0.7 }}
-                            >
-                                <img src={service.img} alt={service.title} className="w-full h-auto rounded-lg shadow-lg" />
-                            </motion.div>
-                            <div className="md:w-1/2 md:px-12 mt-8 md:mt-0">
-                                <h3 className="text-2xl font-semibold text-blue-600 mb-4">{service.title}</h3>
-                                <TypeAnimation
-                                    sequence={[
-                                        service.description[0], 2000,
-                                        service.description[1], 2000,
-                                        service.description[2], 2000,
-                                    ]}
-                                    wrapper="p"
-                                    speed={0}
-                                    repeat={Infinity}
-                                    className="text-lg leading-relaxed text-gray-700"
-                                />
-                            </div>
+                            <img src={service.img} alt={service.title} className="w-full h-auto rounded-lg shadow-lg" />
                         </motion.div>
-                    ))}
-                </div>
-            </section>
-
+                        <div className="md:w-1/2 md:px-12 mt-8 md:mt-0">
+                            <h3 className="text-2xl font-semibold text-blue-600 mb-4">{service.title}</h3>
+                            <TypeAnimation
+                                sequence={[service.description.join(" ") + " ", 2000]}
+                                wrapper="p"
+                                speed={50}
+                                repeat={Infinity}
+                                className="text-lg leading-relaxed text-gray-700"
+                            />
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        </section>
             {/* Meet the Team Section */}
             <section className="max-w-7xl mx-auto px-6 md:px-16 py-20 bg-gray-100">
                 <h2 className="text-4xl font-bold text-center mb-12">Meet the Team</h2>
@@ -256,75 +260,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Contact Section */}
-            <section id="contact" className="max-w-7xl mx-auto py-20 px-6 md:px-16">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.7 }}
-                    className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg p-10 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all"
-                >
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                        className="text-4xl font-bold text-center mb-6"
-                    >
-                        Get in Touch
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.4 }}
-                        className="text-lg text-center mb-6"
-                    >
-                        Have questions or need help? Reach out to us!
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.6 }}
-                        className="flex flex-col md:flex-row items-center justify-between"
-                    >
-                        <div className="text-center md:text-left">
-                            <p className="text-lg mb-2">
-                                <strong>Email:</strong>
-                                <a href="mailto:support@businessbasket.in" className="underline hover:text-blue-500 transition duration-300">
-                                    support@businessbasket.in
-                                </a>
-                            </p>
-                            <p className="text-lg">
-                                <strong>Phone:</strong>
-                                <a href="tel:+917503677953" className="underline hover:text-blue-500 transition duration-300">
-                                    +91 7503677953
-                                </a>
-                            </p>
-                        </div>
-                        <div className="flex space-x-6 mt-4 md:mt-0">
-                            <motion.a
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                href="https://facebook.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-gray-900 hover:text-blue-500 text-2xl transition duration-300"
-                            >
-                                <FaFacebookF />
-                            </motion.a>
-                            <motion.a
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                href="https://twitter.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-gray-900 hover:text-blue-500 text-2xl transition duration-300"
-                            >
-                                <FaTwitter />
-                            </motion.a>
-                        </div>
-                    </motion.div>
-                </motion.div>
-            </section>
         </div>
     );
 };
