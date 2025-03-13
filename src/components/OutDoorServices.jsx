@@ -1,8 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ReactDOM from "react-dom";
+import { useNavigate } from "react-router-dom";
 
-// Import Outdoor Services Images
 import landSurvey from "../assets/outDoorServices/LandSurvey.jpg";
 import cadastralSurvey from "../assets/outDoorServices/Cadastral survey.jpg";
 import doorSurvey from "../assets/outDoorServices/Door.jpg";
@@ -19,47 +18,146 @@ import censusSurvey from "../assets/outDoorServices/Census Survey.jpg";
 import groundTrothing from "../assets/outDoorServices/Ground trothing.jpg";
 import poiAddress from "../assets/outDoorServices/POI & Address.jpg";
 import networkSurvey from "../assets/outDoorServices/Assets survey and mapping.jpg";
+
 const outdoorServices = [
-    { title: "Land Survey", img: landSurvey },
-    { title: "Cadastral Survey", img: cadastralSurvey },
-    { title: "Door To Door Survey", img: doorSurvey },
-    { title: "Data Collection & Verification", img: dataCollection },
-    { title: "Utility Survey", img: utilitySurvey },
-    { title: "Drone Surveys", img: droneSurvey },
-    { title: "Road & Highway Survey", img: roadSurvey },
-    { title: "Gas Pipeline Survey", img: gasPipeline },
-    { title: "Water Pipeline Survey", img: waterPipeline },
-    { title: "Topographic Survey", img: topoSurvey },
-    { title: "Consumer Indexing", img: consumerIndexing },
-    { title: "Property Tax Survey", img: propertyTax },
-    { title: "Census Survey", img: censusSurvey },
-    { title: "Ground Trothing", img: groundTrothing },
-    { title: "POI & Address Point Verification", img: poiAddress },
-    { title: "Network Survey & Assets Mapping", img: networkSurvey },
+  {
+    title: "Land Survey",
+    img: landSurvey,
+    description: "Accurate land measurements and boundary assessments for property evaluation and development.",
+  },
+  {
+    title: "Cadastral Survey",
+    img: cadastralSurvey,
+    description: "Mapping of property boundaries to ensure legal ownership and land parcel accuracy.",
+  },
+  {
+    title: "Door To Door Survey",
+    img: doorSurvey,
+    description: "Collecting vital information directly from households for research and planning.",
+  },
+  {
+    title: "Data Collection & Verification",
+    img: dataCollection,
+    description: "Gathering and verifying essential geographical and demographic data for analytics.",
+  },
+  {
+    title: "Utility Survey",
+    img: utilitySurvey,
+    description: "Mapping underground utilities like water, gas, and electrical lines for urban planning.",
+  },
+  {
+    title: "Drone Surveys",
+    img: droneSurvey,
+    description: "Aerial imaging and topographic analysis using drones for precise land assessment.",
+  },
+  {
+    title: "Road & Highway Survey",
+    img: roadSurvey,
+    description: "Geospatial data collection for road construction, maintenance, and infrastructure planning.",
+  },
+  {
+    title: "Gas Pipeline Survey",
+    img: gasPipeline,
+    description: "Surveying and mapping gas pipeline routes for safe and efficient network expansion.",
+  },
+  {
+    title: "Water Pipeline Survey",
+    img: waterPipeline,
+    description: "Assessment and mapping of water pipeline networks for efficient distribution.",
+  },
+  {
+    title: "Topographic Survey",
+    img: topoSurvey,
+    description: "Detailed terrain mapping to aid in construction, engineering, and land-use planning.",
+  },
+  {
+    title: "Consumer Indexing",
+    img: consumerIndexing,
+    description: "Identifying and mapping consumer data for utility services and urban development.",
+  },
+  {
+    title: "Property Tax Survey",
+    img: propertyTax,
+    description: "Evaluating property values and taxation based on land and building assessments.",
+  },
+  {
+    title: "Census Survey",
+    img: censusSurvey,
+    description: "Comprehensive population data collection for government and policy-making purposes.",
+  },
+  {
+    title: "Ground Trothing",
+    img: groundTrothing,
+    description: "Validating remote sensing data by physically inspecting survey locations.",
+  },
+  {
+    title: "POI & Address Point Verification",
+    img: poiAddress,
+    description: "Confirming location-based data accuracy for GIS and mapping applications.",
+  },
+  {
+    title: "Network Survey & Assets Mapping",
+    img: networkSurvey,
+    description: "Mapping physical infrastructure such as telecom, power, and transportation assets.",
+  },
 ];
 
 const OutdoorServices = () => {
-    return (
-        <section className="max-w-7xl mx-auto py-20 px-6 md:px-16">
-            <h2 className="text-4xl font-bold text-center mb-12 text-blue-700">Outdoor Services</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                {outdoorServices.map((service, index) => (
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: index * 0.1 }}
-                        className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform"
-                    >
-                        <img src={service.img} alt={service.title} className="w-full h-48 object-cover" />
-                        <div className="p-6">
-                            <h3 className="text-xl font-semibold text-gray-800">{service.title}</h3>
-                        </div>
-                    </motion.div>
-                ))}
+  const navigate = useNavigate();
+
+  return (
+    <section className="max-w-7xl mx-auto py-16 px-6 sm:px-10 lg:px-16">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-12 gap-6">
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 text-center sm:text-left">
+          Our Outdoor Services
+        </h2>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <button
+            onClick={() => navigate("/services/development")}
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+          >
+            Development Services
+          </button>
+          <button
+            onClick={() => navigate("/services/indoor")}
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition"
+          >
+            Indoor Services
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        {outdoorServices.map((service, index) => (
+          <motion.div
+            key={service.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden transform hover:scale-105"
+          >
+            <div className="relative overflow-hidden rounded-t-2xl">
+              <img
+                src={service.img}
+                alt={service.title}
+                loading="lazy"
+                className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
             </div>
-        </section>
-    );
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {service.title}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default OutdoorServices;
