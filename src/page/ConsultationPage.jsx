@@ -53,13 +53,13 @@ const ConsultationSection = () => {
         <p className="text-lg text-gray-600 mt-3">Book an appointment or request a demo to explore our services.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-6">
           <button 
-            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full shadow-lg hover:opacity-90 transition-all"
+            className="px-6 py-3 bg-gradient-to-br from-purple-900 to-pink-700 text-white rounded-full shadow-lg hover:opacity-90 transition-all"
             onClick={() => navigate("/book-appointment")}
           >
             Book an Appointment
           </button>
           <button 
-            className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-full shadow-lg hover:opacity-90 transition-all"
+            className="px-6 py-3 bg-gradient-to-br from-blue-900 to-indigo-700 text-white rounded-full shadow-lg hover:opacity-90 transition-all"
             onClick={() => navigate("/request-demo")}
           >
             Request a Demo
