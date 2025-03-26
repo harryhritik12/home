@@ -51,20 +51,33 @@ const BookAppointment = () => {
         initial={{ opacity: 0, y: -50 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.8 }}
-        className="w-full max-w-4xl flex bg-white rounded-2xl shadow-xl overflow-hidden"
+        className="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-2xl shadow-xl overflow-hidden"
       >
-        <div className="w-1/2 bg-gradient-to-br from-purple-900 to-pink-700 p-8 flex flex-col justify-center text-white">
-          <h2 className="text-3xl font-bold">Let's discuss something <span className="text-pink-300">cool</span> together</h2>
+        <div className="md:w-1/2 bg-gradient-to-br from-purple-900 to-pink-700 p-8 flex flex-col justify-center text-white">
+          <motion.h2 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }}
+            className="text-3xl font-bold"
+          >
+            Let's discuss something <span className="text-pink-300">cool</span> together
+          </motion.h2>
           <p className="mt-4">Contact us for expert solutions in web development, mobile app development, and more.</p>
           <div className="mt-6 space-y-4">
             <p className="flex items-center space-x-2">📧 info@businessbasket.in</p>
             <p className="flex items-center space-x-2">📞 8700605125</p>
-            <p className="flex items-center space-x-2">📍 Business Basket Infratech Private Limited. 329, Mahala Bhawan, Rangpuri, Nr BJP Office, N.D-110037</p>
+            <p className="flex items-center space-x-2">📍 Business Basket Infratech Private Limited, New Delhi</p>
           </div>
         </div>
-        <div className="w-1/2 p-8">
+        <div className="md:w-1/2 p-8">
           <h2 className="text-2xl font-bold text-gray-800 text-center">Book an Appointment</h2>
-          <form onSubmit={handleSubmit} className="space-y-4 mt-6">
+          <motion.form 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8, delay: 0.2 }}
+            onSubmit={handleSubmit} 
+            className="space-y-4 mt-6"
+          >
             <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm" />
             <input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm" />
             <input type="tel" name="phone" placeholder="Your Phone" value={formData.phone} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm" />
@@ -75,8 +88,10 @@ const BookAppointment = () => {
               <option value="Website Creation">Website Creation</option>
               <option value="WebGIS - Land Management">WebGIS - Land Management</option>
             </select>
-            <input type="date" name="date" value={formData.date} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm" />
-            <input type="time" name="time" value={formData.time} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm" />
+            <div className="flex flex-col md:flex-row gap-4">
+              <input type="date" name="date" value={formData.date} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm" />
+              <input type="time" name="time" value={formData.time} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm" />
+            </div>
             <textarea name="message" placeholder="Additional Details" value={formData.message} onChange={handleChange} className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 shadow-sm"></textarea>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -86,7 +101,7 @@ const BookAppointment = () => {
             >
               Send Message
             </motion.button>
-          </form>
+          </motion.form>
         </div>
       </motion.div>
     </div>
