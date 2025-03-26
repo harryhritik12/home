@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-toast.configure();
 
 const BookAppointment = () => {
   const navigate = useNavigate();
@@ -32,7 +28,7 @@ const BookAppointment = () => {
       });
 
       const data = await res.json();
-      toast.success(data.message, { position: "top-center" });
+      alert(data.message);
       setFormData({
         name: "",
         email: "",
@@ -45,7 +41,7 @@ const BookAppointment = () => {
       setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Failed to book appointment", { position: "top-center" });
+      alert("Failed to book appointment");
     }
   };
 
