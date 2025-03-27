@@ -51,51 +51,68 @@ const RequestDemo = () => {
         initial={{ opacity: 0, y: -50 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.8 }}
-        className="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-2xl shadow-xl overflow-hidden"
+        className="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-3xl shadow-2xl overflow-hidden"
       >
-        <div className="md:w-1/2 bg-gradient-to-br from-blue-900 to-indigo-700 p-8 flex flex-col justify-center text-white">
+        {/* Left Section */}
+        <div className="md:w-1/2 bg-gradient-to-br from-blue-900 to-indigo-700 p-10 flex flex-col justify-center text-white">
           <motion.h2 
             initial={{ opacity: 0, x: -20 }} 
             animate={{ opacity: 1, x: 0 }} 
             transition={{ duration: 0.8 }}
-            className="text-3xl font-bold"
+            className="text-4xl font-extrabold leading-tight"
           >
             Experience a Live <span className="text-indigo-300">Demo</span>
           </motion.h2>
-          <p className="mt-4">Connect with us for an interactive session on our latest services.</p>
-          <div className="mt-6 space-y-4">
-            <p className="flex items-center space-x-2">📧 info@businessbasket.in</p>
-            <p className="flex items-center space-x-2">📞 8700605125</p>
-            <p className="flex items-center space-x-2">📍 Business Basket Infratech Private Limited, New Delhi</p>
+          <p className="mt-4 text-lg opacity-90">
+            Connect with us for an interactive session on our latest services.
+          </p>
+          <div className="mt-6 space-y-4 text-lg">
+            <p className="flex items-center space-x-2">📧 <span className="font-medium">info@businessbasket.in</span></p>
+            <p className="flex items-center space-x-2">📞 <span className="font-medium">8700605125</span></p>
+            <p className="flex items-center space-x-2">📍 <span className="font-medium">New Delhi, India</span></p>
           </div>
         </div>
-        <div className="md:w-1/2 p-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center">Request a Demo</h2>
+
+        {/* Right Section - Form */}
+        <div className="md:w-1/2 p-10">
+          <h2 className="text-3xl font-bold text-gray-800 text-center">Request a Demo</h2>
           <motion.form 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8, delay: 0.2 }}
             onSubmit={handleSubmit} 
-            className="space-y-4 mt-6"
+            className="space-y-5 mt-6"
           >
-            <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" />
-            <input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" />
-            <input type="tel" name="phone" placeholder="Your Phone" value={formData.phone} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" />
-            <input type="text" name="company" placeholder="Your Company" value={formData.company} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" />
-            <select name="service" value={formData.service} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm">
+            <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm bg-gray-50" />
+            <input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm bg-gray-50" />
+            <input type="tel" name="phone" placeholder="Your Phone" value={formData.phone} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm bg-gray-50" />
+            <input type="text" name="company" placeholder="Your Company" value={formData.company} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm bg-gray-50" />
+            
+            <select name="service" value={formData.service} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm bg-gray-50">
               <option value="">Select Service</option>
               <option value="Web Development">Web Development</option>
               <option value="Mobile App Development">Mobile App Development</option>
               <option value="Website Creation">Website Creation</option>
               <option value="WebGIS - Land Management">WebGIS - Land Management</option>
             </select>
-            <input type="date" name="date" value={formData.date} onChange={handleChange} required className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" />
-            <textarea name="message" placeholder="Additional Details" value={formData.message} onChange={handleChange} className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"></textarea>
+
+            <input 
+              type="date" 
+              name="date" 
+              value={formData.date} 
+              onChange={handleChange} 
+              required 
+              min={new Date().toISOString().split("T")[0]} 
+              className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm bg-gray-50" 
+            />
+
+            <textarea name="message" placeholder="Additional Details" value={formData.message} onChange={handleChange} className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm bg-gray-50"></textarea>
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="w-full bg-gradient-to-r from-indigo-500 to-blue-600 text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:from-indigo-600 hover:to-blue-700 transition-all"
+              className="w-full bg-gradient-to-r from-indigo-500 to-blue-600 text-white py-4 rounded-xl font-semibold text-lg shadow-lg hover:from-indigo-600 hover:to-blue-700 transition-all"
             >
               Request Demo
             </motion.button>
